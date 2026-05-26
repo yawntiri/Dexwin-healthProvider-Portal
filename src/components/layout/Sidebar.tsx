@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, FileText, Users, Grid3X3, BarChart3, Shield,
   Settings, HeadphonesIcon, ChevronRight, Bell, Wifi, WifiOff,
-  Activity, CreditCard, Building2, LogOut, X
+  Activity, CreditCard, Building2, LogOut, X, ClipboardList
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/Badge";
@@ -143,6 +143,12 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5">
+        {currentUser.providerStatus !== "Active" && currentUser.providerStatus !== "Suspended" && (
+          <div className="space-y-0.5 mb-1">
+            <NavLink item={{ label: "Account Setup", href: "/onboarding", icon: ClipboardList }} />
+            <div className="border-t border-slate-100 my-2" />
+          </div>
+        )}
         <div className="space-y-0.5">
           {mainNavItems.map(item => <NavLink key={item.href} item={item} />)}
         </div>
